@@ -36,7 +36,7 @@ class CartPoleQAgent():
             # take the optimal action
             return np.argmax(self.Q_table[state])
 
-    def update_q(self, state, action, reward, new_state, new_action):
+    def update_sarsa(self, state, action, reward, new_state, new_action):
         self.Q_table[state][action] += self.lr * ((reward + self.discount * self.Q_table[new_state][new_action]) - self.Q_table[state][action])
 
     def get_explore_rate(self, t):
@@ -58,7 +58,7 @@ class CartPoleQAgent():
                 obs, reward, done, _ = self.env.step(action)
                 new_state = self.discretize_state(obs)
                 new_action = self.choose_action(current_state)
-                self.update_q(current_state, action, reward, new_state, new_action)
+                self.update_sarsa(current_state, action, reward, new_state, new_action)
                 current_state = new_state
 
         print('Finished training!')
