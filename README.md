@@ -1,5 +1,5 @@
 # CartPole-v0
-##Solution to Cartpole balancing problem with the help of reinforcement learning.
+#Solution to Cartpole balancing problem with the help of reinforcement learning.
 
 I highly recommend going through following blogs and videos if you are new to RL
 1) Thomos Simonini: Reinforcement Learning with Q Learning: https://lnkd.in/eh46x3V 
