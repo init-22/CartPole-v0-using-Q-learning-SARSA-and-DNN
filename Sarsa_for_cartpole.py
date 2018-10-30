@@ -29,7 +29,7 @@ class CartPoleAgent():
         return tuple(discretized)
 
     def choose_action(self, state):
-        if (np.random.random() < self.explore_rate):
+        if (np.random.random() < self.epsilon):
             # randomly sample explore_rate percent of the time
             return self.env.action_space.sample() 
         else:
@@ -37,20 +37,20 @@ class CartPoleAgent():
             return np.argmax(self.sarsa_table[state])
 
     def update_sarsa(self, state, action, reward, new_state, new_action):
-        self.sarsa_table[state][action] += self.lr * ((reward + self.discount * self.sarsa_table[new_state][new_action]) - self.sarsa_table[state][action])
+        self.sarsa_table[state][action] += self.learning_rate * ((reward + self.discount * self.sarsa_table[new_state][new_action]) - self.sarsa_table[state][action])
 
-    def get_explore_rate(self, t):
+    def epsilon(self, t):
         return max(self.min_explore, min(1., 1. - math.log10((t + 1) / self.decay)))
 
-    def get_lr(self, t):
+    def learning_rate(self, t):
         return max(self.min_lr, min(1., 1. - math.log10((t + 1) / self.decay)))
 
     def train(self):
         for e in range(self.num_episodes):
             current_state = self.discretize_state(self.env.reset())
 
-            self.lr = self.get_lr(e)
-            self.explore_rate = self.get_explore_rate(e)
+            self.lr = self.learning_rate(e)
+            self.explore_rate = self.epsilon(e)
 
             done = False
             while not done:
