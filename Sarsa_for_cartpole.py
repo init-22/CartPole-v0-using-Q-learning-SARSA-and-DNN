@@ -2,7 +2,7 @@ import gym
 import numpy as np
 import math
 
-class CartPoleQAgent():
+class CartPoleAgent():
     def __init__(self, buckets=(1, 1, 6, 12), num_episodes=1000, min_lr=0.1, min_explore=0.1, discount=1.0, decay=25):
         self.buckets = buckets
         self.num_episodes = num_episodes
@@ -17,7 +17,7 @@ class CartPoleQAgent():
         self.upper_bounds = [self.env.observation_space.high[0], 0.5, self.env.observation_space.high[2], math.radians(50) / 1.]
         self.lower_bounds = [self.env.observation_space.low[0], -0.5, self.env.observation_space.low[2], -math.radians(50) / 1.]
 
-        self.Q_table = np.zeros(self.buckets + (self.env.action_space.n,))
+        self.sarsa_table = np.zeros(self.buckets + (self.env.action_space.n,))
 
     def discretize_state(self, obs):
         discretized = list()
@@ -34,10 +34,10 @@ class CartPoleQAgent():
             return self.env.action_space.sample() 
         else:
             # take the optimal action
-            return np.argmax(self.Q_table[state])
+            return np.argmax(self.sarsa_table[state])
 
     def update_sarsa(self, state, action, reward, new_state, new_action):
-        self.Q_table[state][action] += self.lr * ((reward + self.discount * self.Q_table[new_state][new_action]) - self.Q_table[state][action])
+        self.sarsa_table[state][action] += self.lr * ((reward + self.discount * self.sarsa_table[new_state][new_action]) - self.sarsa_table[state][action])
 
     def get_explore_rate(self, t):
         return max(self.min_explore, min(1., 1. - math.log10((t + 1) / self.decay)))
@@ -81,7 +81,7 @@ class CartPoleQAgent():
 
 
 if __name__ == "__main__":
-    agent = CartPoleQAgent()
+    agent = CartPoleAgent()
     agent.train()
     t = agent.run()
     print("Time", t)
