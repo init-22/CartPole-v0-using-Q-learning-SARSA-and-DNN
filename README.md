@@ -9,4 +9,4 @@ I highly recommend going through following blogs and videos if you are new to RL
 5) Reinforcement Learning by David Silver : https://lnkd.in/ebtdXkd
 
 The code is well explaind by blog no 2 and 3 and it works very well using Q learning algorithm by stabilizing the pole for 200 timsteps but you can reach out to me on isaacpatole4u@gmail.com if you find yourself stuck at any point. 
-I have also tried (and trying) to solve the problem using Sarsa but it turns out that it is not as efficient as Q learning. 
+I have also tried to solve the problem using Sarsa, it is also working fine but we only have set the discount rate = 0.98. 
