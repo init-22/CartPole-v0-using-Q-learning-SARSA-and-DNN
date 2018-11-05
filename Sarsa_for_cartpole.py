@@ -3,7 +3,7 @@ import numpy as np
 import math
 
 class CartPoleAgent():
-    def __init__(self, buckets=(1, 1, 6, 12), num_episodes=1000, min_lr=0.1, min_epsilon=0.1, discount=1.0, decay=25):
+    def __init__(self, buckets=(1, 1, 6, 12), num_episodes=1000, min_lr=0.1, min_epsilon=0.1, discount=0.98, decay=25):
         self.buckets = buckets
         self.num_episodes = num_episodes
         self.min_lr = min_lr
