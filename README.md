@@ -9,7 +9,7 @@ I highly recommend going through following blogs and videos if you are new to RL
 5) Reinforcement Learning by Jacob Schrum : https://lnkd.in/eRS2vBY
 6) Reinforcement Learning by David Silver : https://lnkd.in/ebtdXkd
 
-The code is well explaind by blog no 2 and 3 and it works very well using Q learning algorithm by stabilizing the pole for 200 timsteps but you can reach out to me on isaacpatole4u@gmail.com if you find yourself stuck at any point. 
+The code is well explaind by blog no 2 and 3 and it works very well using Q learning algorithm by stabilizing the pole for 200 timsteps 
 I have also tried to solve the problem using Sarsa, it is also working fine but we only have to set the discount rate = 0.98. 
 
 A Deep Neural Network can also come up with the solution to this problem, go through Sentdex's website (no. 4) for more info.
